@@ -3,10 +3,10 @@ import WeatherCard from './WeatherCard.js';
 
 const WeatherHolder = ({ forcasts }) => {
     const renderedList = forcasts.map((forcast) => {
-        return <WeatherCard forcast={forcast} />
+        return <WeatherCard key={forcast.dt} forcast={forcast} />
     });
 
-    return <div className='ui relaxed divided list'>{renderedList}</div>
+    return <div className='ui cards'>{renderedList}</div>
 }
 
 export default WeatherHolder;

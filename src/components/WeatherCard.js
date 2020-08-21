@@ -1,13 +1,20 @@
 import React from 'react';
 
 const WeatherCard = ({ forcast }) => {
+    const cardStyle = {
+        backgroundColor: 'white'
+    };
+
     return (
-        <div class="ui card">
-            <div class="content">
-                <div class="header">Forcast</div>
+        <div className="ui card">
+            <div className="content">
+                <div className="header">Forcast</div>
             </div>
-            <div class="content">
-                <h4 class="ui sub header">Date: {forcast.dt_txt}</h4>
+            <div className="image" style={cardStyle}>
+                <img src={"https://openweathermap.org/img/wn/" + forcast.weather[0].icon + "@4x.png"} alt={forcast.weather[0].main} />
+            </div>
+            <div className="content">
+                <h4 className="ui sub header">Date: {forcast.dt_txt}</h4>
                 <div className="ui small feed">
                     <div className="event">
                         <div className="content">
@@ -19,7 +26,7 @@ const WeatherCard = ({ forcast }) => {
                     <div className="event">
                         <div className="content">
                             <div className="summary">
-                                weather: {forcast.weather.description}
+                                weather: {forcast.weather[0].description}
                             </div>
                         </div>
                     </div>
@@ -28,7 +35,7 @@ const WeatherCard = ({ forcast }) => {
             <div className="extra content">
                 <button className="ui button">View Weather API</button>
             </div>
-        </div>
+        </div >
     )
 }
 
