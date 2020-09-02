@@ -13,7 +13,7 @@ const WeatherCard = ({ forcast }) => {
                 <div className="header">Forcast</div>
             </div>
             <div className="image" style={cardStyle}>
-                <img src={"https://openweathermap.org/img/wn/" + forcast.icon + "@4x.png"} alt={forcast.condition} />
+                <img src={'/icons/' + forcast.icon + ".svg"} alt={forcast.condition} />
             </div>
             <div className="content">
                 <h4 className="ui sub header">Date: {forcast.dt_txt}</h4>
