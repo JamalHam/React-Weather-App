@@ -5,37 +5,38 @@ const WeatherCard = ({ forcast }) => {
         backgroundColor: 'white'
     };
 
+    //date text
+    const readableDate = (dateText) => {
+        const date = new Date(dateText);
+        const dateTimeFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit' })
+        const [{ value: month }, , { value: day }, , { value: year }] = dateTimeFormat.formatToParts(date);
+
+        return `${month}-${day}-${year}`
+    }
+
     //const KELVIN = 273;
 
     return (
-        <div className="ui card">
-            <div className="content">
-                <div className="header">Forcast</div>
-            </div>
+        <div className="weatherCard">
             <div className="image" style={cardStyle}>
                 <img src={'/icons/' + forcast.icon + ".svg"} alt={forcast.condition} />
             </div>
             <div className="content">
-                <h4 className="ui sub header">Date: {forcast.dt_txt}</h4>
-                <div className="ui small feed">
-                    <div className="event">
-                        <div className="content">
-                            <div className="summary">
-                                temp: {forcast.temp_min} &#176;/{forcast.temp_max} &#176;
-                            </div>
-                        </div>
-                    </div>
-                    <div className="event">
-                        <div className="content">
-                            <div className="summary">
-                                weather: {forcast.description}
-                            </div>
+                <h4 className="cardHeading">{readableDate(forcast.dt_txt)}</h4>
+                <div className="event">
+                    <div className="content">
+                        <div className="summary">
+                            Hi/Low: {forcast.temp_max} &#176;/{forcast.temp_min} &#176;
                         </div>
                     </div>
                 </div>
-            </div>
-            <div className="extra content">
-                <button className="ui button">View Weather API</button>
+                <div className="event">
+                    <div className="content">
+                        <div className="summary">
+                            {forcast.description}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div >
     )

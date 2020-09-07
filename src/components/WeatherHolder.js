@@ -6,7 +6,7 @@ const WeatherHolder = ({ forcasts }) => {
         return <WeatherCard key={forcast.key} forcast={forcast} />
     });
 
-    return <div className='ui cards'>{renderedList}</div>
+    return <div className='cardHolder'>{renderedList}</div>
 }
 
 export default WeatherHolder;
