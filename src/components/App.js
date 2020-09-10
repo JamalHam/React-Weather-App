@@ -11,12 +11,12 @@ class App extends React.Component {
     console.log('component mounted');
   }
 
-  onTermSubmit = async (term) => {
+  onTermSubmit = async (term, degree, country) => {
     console.log('attempted submit');
     const response = await OpenWeatherMap.get('/search', {
       params: {
-        q: term + ',ca',
-        units: 'metric',
+        q: term + ',' + country,
+        units: degree,
         appid: '7c339de07d4aa0a58250f665c80d5951',
       }
     });
@@ -68,8 +68,6 @@ class App extends React.Component {
       forcasts: weatherArray
     })
   };
-
-
 
   render() {
     return (

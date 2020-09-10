@@ -1,9 +1,6 @@
 import React from 'react';
 
 const WeatherCard = ({ forcast }) => {
-    const cardStyle = {
-        backgroundColor: 'white'
-    };
 
     //date text
     const readableDate = (dateText) => {
@@ -18,7 +15,7 @@ const WeatherCard = ({ forcast }) => {
 
     return (
         <div className="weatherCard">
-            <div className="image" style={cardStyle}>
+            <div className="image" >
                 <img src={'/icons/' + forcast.icon + ".svg"} alt={forcast.condition} />
             </div>
             <div className="content">

@@ -7,6 +7,5 @@ export default axios.create({
     baseURL: url,
     params: {
         part: 'snippet',
-        maxResults: 5
     }
 });
