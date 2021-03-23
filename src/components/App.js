@@ -4,78 +4,71 @@ import WeatherHolder from './WeatherHolder';
 import OpenWeatherMap from '../api/OpenWeatherMap.js';
 
 class App extends React.Component {
+  // onTermSubmit = async (term, degree, country) => {
+  //   console.log('attempted submit');
+  //   const response = await OpenWeatherMap.get('/search', {
+  //     params: {
+  //       q: term + ',' + country,
+  //       units: degree,
+  //       appid: '7c339de07d4aa0a58250f665c80d5951',
+  //     }
+  //   });
+  //   console.log(response);
 
-  state = { forcasts: [] }
+  //   let weatherArray = [];
+  //   let weatherNameList = [];
 
-  componentDidMount() {
-    console.log('component mounted');
-  }
+  //   const respArr = response.data.list
 
-  onTermSubmit = async (term, degree, country) => {
-    console.log('attempted submit');
-    const response = await OpenWeatherMap.get('/search', {
-      params: {
-        q: term + ',' + country,
-        units: degree,
-        appid: '7c339de07d4aa0a58250f665c80d5951',
-      }
-    });
-    console.log(response);
+  //   for (var i = 0; i < respArr.length; i++) {
+  //     const date = respArr[i].dt_txt;
+  //     const cutDate = date.split(" ")[0];
+  //     console.log(date.split(" ")[0]);
 
-    let weatherArray = [];
-    let weatherNameList = [];
+  //     if (weatherNameList.indexOf(cutDate) !== -1) {
+  //       console.log('weather piece  ' + cutDate + ' already exists!!!');
 
-    const respArr = response.data.list
+  //       let arrRef = weatherArray.find(x => x.dt_txt === cutDate);
 
-    for (var i = 0; i < respArr.length; i++) {
-      const date = respArr[i].dt_txt;
-      const cutDate = date.split(" ")[0];
-      console.log(date.split(" ")[0]);
+  //       if (arrRef.temp_min > respArr[i].main.temp_min) {
+  //         arrRef.temp_min = respArr[i].main.temp_min;
+  //       }
 
-      if (weatherNameList.indexOf(cutDate) !== -1) {
-        console.log('weather piece  ' + cutDate + ' already exists!!!');
+  //       if (respArr[i].main.temp_max > arrRef.temp_max) {
+  //         arrRef.temp_max = respArr[i].main.temp_max
+  //       }
 
-        let arrRef = weatherArray.find(x => x.dt_txt === cutDate);
+  //     } else {
+  //       weatherArray.push({
+  //         dt_txt: cutDate,
+  //         temp: respArr[i].main.temp,
+  //         temp_max: respArr[i].main.temp_max,
+  //         temp_min: respArr[i].main.temp_min,
+  //         icon: respArr[i].weather[0].icon,
+  //         description: respArr[i].weather[0].description,
+  //         condition: respArr[i].weather[0].main,
+  //         key: respArr[i].dt
+  //       });
 
-        if (arrRef.temp_min > respArr[i].main.temp_min) {
-          arrRef.temp_min = respArr[i].main.temp_min;
-        }
+  //       weatherNameList.push(cutDate);
+  //     }
+  //   }
 
-        if (respArr[i].main.temp_max > arrRef.temp_max) {
-          arrRef.temp_max = respArr[i].main.temp_max
-        }
+  //   console.log('logging self built array');
+  //   console.log(weatherArray);
 
-      } else {
-        weatherArray.push({
-          dt_txt: cutDate,
-          temp: respArr[i].main.temp,
-          temp_max: respArr[i].main.temp_max,
-          temp_min: respArr[i].main.temp_min,
-          icon: respArr[i].weather[0].icon,
-          description: respArr[i].weather[0].description,
-          condition: respArr[i].weather[0].main,
-          key: respArr[i].dt
-        });
-
-        weatherNameList.push(cutDate);
-      }
-    }
-
-    console.log('logging self built array');
-    console.log(weatherArray);
-
-    this.setState({
-      forcasts: weatherArray
-    })
-  };
+  //   this.setState({
+  //     forcasts: weatherArray
+  //   })
+  // };
 
   render() {
     return (
       <div className="ui container">
-        <SearchBar onFormSubmit={this.onTermSubmit} />
+        <SearchBar />
         <div className="ui grid">
           <div className="sixteen wide column">
-            <WeatherHolder forcasts={this.state.forcasts} />
+            <WeatherHolder />
           </div>
         </div>
       </div>

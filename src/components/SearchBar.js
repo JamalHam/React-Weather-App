@@ -1,28 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { setCity, setCountry, setUnit, fetchWeather } from '../actions';
 
 class SearchBar extends React.Component {
-    state = {
-        term: '',
-        degree: 'celsius',
-        country: 'ca'
-    }
+    // state = {
+    //     term: '',
+    //     degree: 'celsius',
+    //     country: 'ca'
+    // }
 
     onInputChange = (event) => {
-        this.setState({ term: event.target.value });
+        //this.setState({ term: event.target.value });
+        this.props.setCity(event.target.value);
     }
 
     onDegreeChange = (event) => {
-        this.setState({ degree: event.target.value });
+        //this.setState({ degree: event.target.value });
+        this.props.setUnit(event.target.value);
     }
 
     onCountryChange = (event) => {
-        this.setState({ country: event.target.value });
+        //this.setState({ country: event.target.value });
+        this.props.setCountry(event.target.value)
     }
 
     onFormSubmit = (event) => {
         event.preventDefault();
 
-        this.props.onFormSubmit(this.state.term, this.state.degree, this.state.country);
+        //this.props.onFormSubmit(this.state.term, this.state.degree, this.state.country);
+        this.props.fetchWeather(this.props.city, this.props.country, this.props.unit)
     };
 
     render() {
@@ -33,7 +39,7 @@ class SearchBar extends React.Component {
                         <label>City</label>
                         <input
                             type="text"
-                            value={this.state.term}
+                            value={this.props.city}
                             onChange={this.onInputChange}
                             placeholder="Type in your city to get weather!"
                         />
@@ -60,4 +66,8 @@ class SearchBar extends React.Component {
     }
 }
 
-export default SearchBar;
+const mapStateToProps = (state) => {
+    return { city: state.weather.city, unit: state.weather.unit, country: state.weather.country, weatherArray: state.weather.weatherArray }
+}
+
+export default connect(mapStateToProps, { setCity, setCountry, setUnit, fetchWeather })(SearchBar);
